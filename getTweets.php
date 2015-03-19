@@ -7,11 +7,12 @@ error_reporting(-1);
  * */
 
 
-function getTweet($hash_tag){
-    $url = 'http://search.twitter.com/search.atom?q='.urldecode($hash_tag);
+function getTweet($hash_tag)
+{
+    $url = 'http://search.twitter.com/search.atom?q=' . urldecode($hash_tag);
     echo "Connecting to: $url ";
     $ch = curl_init($url);
-    curl_setopt($ch,CURLOPT_RETURNTRANSFER,TRUE);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $xml = curl_exec($ch);
     curl_close($ch);
 
@@ -23,17 +24,15 @@ function getTweet($hash_tag){
     $twelement = new SimpleXMLElement($xml);
     foreach ($twelement->entry as $entry) {
         $text = trim($entry->title);
-        $author =trim($entry->author->name);
+        $author = trim($entry->author->name);
         $time = trim($entry->published);
         $id = $entry->id;
-        echo "Tweet from ".$author.": ".$text ."\n Posted: ".date('n/j/y g:i a',$time);
+        echo "Tweet from " . $author . ": " . $text . "\n Posted: " . date('n/j/y g:i a', $time);
 
     }
 
     return true;
 }
-
-
 
 
 getTweet('#GoodBoy');
