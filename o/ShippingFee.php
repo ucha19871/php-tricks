@@ -32,8 +32,6 @@ Note
 Code Template:
 */
 
-
-
 // Do not modify the Shipping class.
 abstract class Shipping
 {
@@ -58,7 +56,6 @@ abstract class Shipping
         return $this->_itemsCount;
     }
 }
-
 // You can modify code below this comment.
 class InternationalShipping extends Shipping
 {
@@ -111,9 +108,7 @@ class LocalShipping extends Shipping
 }
 
 function calculateShippingFees($items, $output = 'print') {
-
     $total = 0;
-
     foreach ($items as $obj) {
         if(!is_a($obj,'Shipping')){
             $total += 0;
@@ -124,12 +119,12 @@ function calculateShippingFees($items, $output = 'print') {
     if($output == 'print'){
         print($total);
     }
-
     return $total;
     // To print results to the standard output you can use print
     // Example:
     // print "Hello world!";
 }
+calculateShippingFees([new InternationalShipping(5, 50, 150), new LocalShipping(6, 35)],'print');
 
 // Do NOT call the calculateShippingFees function in the code
 // you write. The system will call it automatically.
